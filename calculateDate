@@ -1,1 +1,55 @@
+public class CalculateDate {
 
+	public static void main(String[] args){
+
+		    String input = "30032023"; //Input date with format ddMMyyyy
+
+        String day = getDay(input);
+        String month = getMonth(input);
+        String totalDays = String.valueOf(calculateDays(input));
+        Log.d(TAG, "initLayout: day:"+day+" month:"+month+" count:"+totalDays);
+	
+	}
+
+  private static Calendar formatting(String source) {
+        Calendar res = Calendar.getInstance();
+        final String STANDARD_DATE_FORMAT = "ddMMyyyy";
+        if (!TextUtils.isEmpty(source)) {
+            SimpleDateFormat simpleInputFormat = new SimpleDateFormat(STANDARD_DATE_FORMAT);
+            try {
+                simpleInputFormat.format(simpleInputFormat.parse(source));
+                res = simpleInputFormat.getCalendar();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return res;
+    }
+
+    public static String getDay(String input) {
+        Calendar calendar = formatting(input);
+        SimpleDateFormat format = new SimpleDateFormat("dd");
+        return format.format(calendar.getTime());
+    }
+
+    public static String getMonth(String input) {
+        Calendar calendar = formatting(input);
+        SimpleDateFormat format = new SimpleDateFormat("MM");
+        format.getCalendar().getActualMaximum(Calendar.DAY_OF_MONTH);
+        return format.format(calendar.getTime());
+    }
+
+    public static int calculateDays(String input) {
+        int monthNow = Integer.parseInt(getMonth(input));
+        int res = Integer.parseInt(getDay(input));
+        for (int i = 0; i < monthNow-1; i++) {
+            Calendar calendar = formatting(input);
+            calendar.add(Calendar.MONTH,i-1);
+            SimpleDateFormat format = new SimpleDateFormat("MM");
+            format.setCalendar(calendar);
+            res = res + format.getCalendar().getActualMaximum(Calendar.DAY_OF_MONTH);
+        }
+        return res;
+    }
+
+}
