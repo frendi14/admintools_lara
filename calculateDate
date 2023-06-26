@@ -2,12 +2,12 @@ public class CalculateDate {
 
 	public static void main(String[] args){
 
-		    String input = "30032023"; //Input date with format ddMMyyyy
+		String input = "30032023"; //Input date with format ddMMyyyy
 
-        String day = getDay(input);
-        String month = getMonth(input);
-        String totalDays = String.valueOf(calculateDays(input));
-        Log.d(TAG, "initLayout: day:"+day+" month:"+month+" count:"+totalDays);
+        	String day = getDay(input);
+        	String month = getMonth(input);
+        	String totalDays = String.valueOf(calculateDays(input));
+        	Log.d(TAG, "initLayout: day:"+day+" month:"+month+" count:"+totalDays);
 	
 	}
 
