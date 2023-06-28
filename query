@@ -5,7 +5,7 @@ SELECT *
     SUM(price) total_trx
     FROM (
       SELECT tgl_trx, COUNT(tgl_trx) trx_count, SUM(total_harga) price
-      FROM `gjk-pac-dev-02.dummy_test.penjualan`
+      FROM `penjualan`
       GROUP BY tgl_trx
       ORDER BY tgl_trx
     )
